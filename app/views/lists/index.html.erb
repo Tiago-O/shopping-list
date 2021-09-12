@@ -1,0 +1,6 @@
+
+<h2>Hello, <%= @current_user %>!</h2>
+
+<% @lists.each do |list| %>
+  <%= list.title.capitalize %>
+<% end %>
