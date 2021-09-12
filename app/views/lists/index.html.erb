@@ -1,8 +1,14 @@
 
-<h2>Hello, <%= current_user.name %>!</h2>
+<h2><%= current_user.name %>' lists</h2>
 
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to list.title.capitalize, list_path(list) %></li>
   <% end %>
 </ul>
+
+<h5>Add a list:</h5>
+<%= simple_form_for [@new_list] do |f| %>
+<%= f.input :title %>
+<%= f.submit "Add a list", class: "btn btn-secondary" %>
+<% end %>

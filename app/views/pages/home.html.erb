@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if user_signed_in? %>
+  <h2>Hello, <%= current_user.name %>!</h2>
+<% else %>
+  <h2>Hello!</h2>
+<% end %>
+
+<ul>
+  <% if user_signed_in? %>
+    <li><%= link_to 'Your lists', lists_path %></li>
+    <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to 'Sign up', new_user_registration_path%></li>
+    <li><%= link_to 'Log in', new_user_session_path %></li>
+  <% end %>
+</ul>
