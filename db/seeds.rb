@@ -11,7 +11,7 @@ Item.destroy_all
 List.destroy_all
 User.destroy_all
 
-puts 'Creating users: Tiago and Manuel'
+puts 'Creating users'
 tiago = User.create(name: 'Tiago', email: 'tiago@me.pt', password: '123456')
 manuel = User.create(name: 'Manuel', email: 'manuel@me.pt', password: '123456')
 
