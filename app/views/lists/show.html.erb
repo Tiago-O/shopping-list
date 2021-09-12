@@ -1,6 +1,8 @@
 
-<h2>@list.title.capitalize</h2>
+<h2><%= @list.title.capitalize %></h2>
 
-<% @list.items.each do |item| %>
-  <%= item.name.capitalize %>, <%= item.quantity %>
-<% end %>
+<ul>
+  <% @list.items.each do |item| %>
+    <li><%= item.name.capitalize %>, <%= item.quantity %></li>
+  <% end %>
+</ul>
