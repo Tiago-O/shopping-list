@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[show]
+  before_action :set_list, only: %i[show destroy]
 
   def index
     @lists = List.where("user_id = ?", current_user)
@@ -7,6 +7,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @item = Item.new
   end
 
   def create
@@ -14,11 +15,18 @@ class ListsController < ApplicationController
     @list.user = current_user
     if @list.save
       flash[:alert] = 'you added a list!'
-      redirect_back(fallback_location: root_path)
+      redirect_to lists_path
+      # redirect_back(fallback_location: root_path)
     else
       flash[:alert] = 'add a list failed'
+      # redirect_to lists_path
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def destroy
+    @list.destroy
+    redirect_to lists_path
   end
 
   private
