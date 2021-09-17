@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[destroy]
 
   def create
     @item = Item.new(item_params)
@@ -16,15 +15,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     @item.destroy
     redirect_to @item.list
   end
 
   private
-
-  def set_item
-    @item = Item.find(params[:id])
-  end
 
   def item_params
     params.require(:item).permit(:name, :quantity, :list_id)
