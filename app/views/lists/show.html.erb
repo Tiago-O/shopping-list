@@ -5,7 +5,7 @@
   <% @list.items.each do |item| %>
     <li>
       <%= item.name.capitalize %>, <%= item.quantity %>
-      <%= link_to 'delete', item_delete_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger my-1' %>
+      <%= link_to 'delete', item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger my-1' %>
     </li>
   <% end %>
 </ul>
