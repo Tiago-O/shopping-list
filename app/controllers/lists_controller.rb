@@ -3,7 +3,7 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.where("user_id = ?", current_user)
-    @new_list = List.new
+    @list = List.new
   end
 
   def show
@@ -25,7 +25,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list.destroy
+    @list.destroy!
     redirect_to lists_path
   end
 

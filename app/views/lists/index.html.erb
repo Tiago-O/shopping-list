@@ -2,16 +2,25 @@
 <h2><%= current_user.name %>' lists</h2>
 
 <ul>
+  <%= turbo_stream_from @lists %>
+
   <% @lists.each do |list| %>
     <li>
       <%= link_to list.title.capitalize, list_path(list) %>
-      <%= link_to 'delete', list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger my-1' %>
+      <%= turbo_frame_tag dom_id(list) do %>
+        <%= link_to 'delete', list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger my-1' %>
+      <% end %>
+
     </li>
   <% end %>
+
 </ul>
 
-<h5>Add a list:</h5>
-<%= simple_form_for [@new_list] do |f| %>
-<%= f.input :title %>
-<%= f.submit "Add a list", class: "btn btn-secondary" %>
+<%= turbo_frame_tag dom_id(@list) do %>
+  <div class="card card-body">
+    <%= simple_form_for [@list] do |f| %>
+      <%= f.input :title %>
+      <%= f.submit "Add a list", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
 <% end %>

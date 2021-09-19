@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     else
       flash[:alert] = 'add an item failed'
       # redirect_to @item.list
-      redirect_back(fallback_location: @item.list)
+      redirect_back(fallback_location: lists_path)
     end
   end
 
