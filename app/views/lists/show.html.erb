@@ -12,7 +12,7 @@
 
 <h5>Add item to list:</h5>
 <%= simple_form_for [@list, @item] do |f| %>
-<%= f.input :name %>
-<%= f.input :quantity %>
-<%= f.submit "Add item", class: "btn btn-secondary" %>
+  <%= f.input :name %>
+  <%= f.input :quantity %>
+  <%= f.submit "Add item", class: "btn btn-secondary" %>
 <% end %>

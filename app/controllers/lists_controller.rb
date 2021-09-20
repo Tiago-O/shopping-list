@@ -15,7 +15,10 @@ class ListsController < ApplicationController
     @list.user = current_user
     if @list.save
       flash[:alert] = 'you added a list!'
-      redirect_to lists_path
+
+      redirect_to partial: 'list', locals: { list: @list }
+
+      # redirect_to lists_path
       # redirect_back(fallback_location: root_path)
     else
       flash[:alert] = 'add a list failed'
@@ -26,7 +29,10 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy!
-    redirect_to lists_path
+    redirect_to partial: 'list', locals: { list: @list }
+
+    # render partial: 'list', locals: { list: @list }
+    # redirect_to lists_path
   end
 
   private
