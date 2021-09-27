@@ -4,24 +4,14 @@
 <ul>
   <%= turbo_stream_from @lists %>
 
-  <% @lists.each do |list| %>
-    <li>
-
-      <%= link_to list.title.capitalize, list_path(list) %>
+    <% @lists.each do |list| %>
       <%= turbo_frame_tag dom_id(list) do %>
-
-        <% if list.destroyed? %>
-          <%= turbo_stream.remove dom_id(list) %>
-        <% end %>
-
-        <% unless list.destroyed? %>
-          <%= render 'delete_list', list: list %>
-        <% end %>
-
+        <li>
+          <%= link_to list.title.capitalize, list_path(list), method: :get %>
+          <%= link_to 'delete', list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger my-1' %>
+        </li>
       <% end %>
-
-    </li>
-  <% end %>
+    <% end %>
 
 </ul>
 

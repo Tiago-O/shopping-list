@@ -28,9 +28,12 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list.destroy!
-    redirect_to partial: 'list', locals: { list: @list }
+    @list.destroy
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@list) }
+    end
 
+    # redirect_to partial: 'list', locals: { list: @list }
     # render partial: 'list', locals: { list: @list }
     # redirect_to lists_path
   end
